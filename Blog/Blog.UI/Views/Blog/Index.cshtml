@@ -1,0 +1,105 @@
+﻿@model List<Blog.MODELS.BlogEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2></h2>
+
+
+@{ Html.RenderPartial("BlogSummary", Model); }
+
+
+
+
+@*<nav>
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>*@
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BlogID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostContents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Where(m => m.StatusID == 1).OrderByDescending(p => p.BlogID)) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostContents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            if(@User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.BlogID })
+            }
+            if(@User.IsInRole("Admin"))
+            {
+            @Html.ActionLink("Delete", "Delete", new { id = item.BlogID })
+            }
+            @Html.ActionLink("Details", "Details", new {id = item.BlogID})
+        </td>
+    </tr>
+}
+
+</table>*@

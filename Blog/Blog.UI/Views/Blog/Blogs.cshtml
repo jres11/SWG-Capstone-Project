@@ -1,0 +1,48 @@
+﻿@model List<Blog.MODELS.BlogEntry>
+
+@{
+    ViewBag.Title = "Sarah's Blog";
+    
+}
+
+<div class="row">
+<div class="col-lg-12">
+    <h2 style="font-family: calibri">Sarah's Tech Blog </h2>
+    <a href="#/AddBlogEntry" class="btn btn-primary">New Blog Entry</a>
+    <a href="#/AddStaticEntry" class="btn btn-primary">New Static Entry</a>
+
+</div>
+    </div>
+
+<div class="row">
+
+    <div class="page-header">
+
+    </div>
+    <div>
+        <input type="text" ng-model="blogFilter"/>
+    </div>
+
+    <p></p>
+
+
+    @{ Html.RenderPartial("BlogSummary", Model); }
+
+    @*<div ng-repeat="blog in blogList | filter:blogFilter | orderBy:blog.DateOfPost:true" ng-show="blog.StatusID == 1">
+ 
+        <a href="#/Blogs" class="btn btn-danger" ng-click="deleteblog(blog.BlogID)">Delete</a>
+
+
+        <a href="#/EditBlogEntry" class="btn btn-warning" ng-click="editblog(blog.BlogID)">Edit</a>
+        <h2>{{blog.Title}}</h2>
+        <span>
+            {{blog.PostContents}}
+        </span>
+        <hr style="color:red">
+        
+    </div>*@
+</div>
+
+
+
+

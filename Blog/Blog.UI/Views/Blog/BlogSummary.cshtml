@@ -1,0 +1,100 @@
+﻿
+@using System.Security.AccessControl
+@using Blog.MODELS.Filters
+@model List<Blog.MODELS.BlogEntry>
+
+<div class="container">
+
+
+    <div class="blog-header">
+        <h1 class="blog-title">Sarah's Blog</h1>
+        <p class="lead blog-description">Life of a tech blogger in NE Ohio</p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            @if (Model != null && Model.Any())
+            {
+                foreach (var entry in Model)
+                {
+                    if (User.IsInRole("Admin") || entry.StartDate.HasValue && entry.StartDate.Value <= DateTime.Now || entry.StartDate.HasValue == false)
+                    {
+                        if (User.IsInRole("Admin") || entry.EndDate.HasValue && entry.EndDate.Value >= DateTime.Now || entry.EndDate.HasValue == false)
+                        {
+                            <div class="blog-post">
+                                <h2 class="blog-post-title">@entry.Title</h2>
+                                <p class="blog-post-meta">
+                                    @entry.DateOfPost by <a href="#">@entry.UserName</a>
+                                </p>
+                                <p>
+                                    
+    @if (entry.PostContents.Length > 300)
+                                    {
+                                    @Html.Raw((HtmlRemoval.StripTagsRegex(@entry.PostContents).Substring(0, 300) + "..."))
+
+                                    }
+                                    else
+                                    {
+                                    @Html.Raw(@HtmlRemoval.StripTagsRegex(@entry.PostContents))
+                                    }
+
+                                </p>
+
+                                @Html.ActionLink("Read More", "Details", new {id = entry.BlogID})
+
+                            </div>
+                            <!-- /.blog-post -->
+
+
+                            if (User.IsInRole("Admin"))
+                            {
+                                <p>
+                                    @Html.ActionLink("Edit", "Edit", new {id = entry.BlogID})
+                                    &nbsp;
+                                    @Html.ActionLink("Delete", "Delete", new {id = entry.BlogID})
+                                </p>
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <ol class="list-unstyled">
+                            <li>@Html.ActionLink("Create Blog Post", "Create", new {@class = "btn btn-default"})</li>
+                            <li>@Html.ActionLink("Create Static Page", "CreateStatic", new {@class = "btn btn-default"})</li>
+                            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
+                        </ol>
+                    }
+                </p>
+            </div>
+            <div class="sidebar-module">
+                <h4></h4>
+                <ol class="list-unstyled">
+
+                </ol>
+            </div>
+            <div class="sidebar-module">
+                <h4>Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+</div><!-- /.container -->

@@ -1,0 +1,80 @@
+﻿@model Blog.MODELS.BlogEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+
+
+
+  
+    
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">Sarah's Blog</h1>
+          <p class="lead blog-description">Life of a tech blogger in NE Ohio</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">@Model.Title</h2>
+            <p class="blog-post-meta">@Model.DateOfPost by <a href="#">Mark</a></p>
+
+            <p>@Html.Raw(@Model.PostContents)</p>
+
+          </div><!-- /.blog-post -->
+
+          <nav>
+              <ul class="pager">
+                  <!--<li><a href="#">Previous</a></li>-->
+                  <li>@Html.ActionLink("Back to List", "Index")</li>
+                  <!--<li><a href="#">Next</a></li>-->
+              </ul>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+           @if (User.IsInRole("Admin"))
+           {
+            <ol class="list-unstyled">
+                <li>@Html.ActionLink("Create Blog Post", "Create", new { @class = "btn btn-default" })</li>
+                <li>@Html.ActionLink("Create Static Page", "CreateStatic", new { @class = "btn btn-default" })</li>
+                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            </ol>
+           }
+          <div class="sidebar-module">
+            <h4></h4>
+            <ol class="list-unstyled">
+            
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+    
+    
+   
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

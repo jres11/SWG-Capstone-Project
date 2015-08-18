@@ -1,0 +1,26 @@
+﻿@model Blog.MODELS.StaticEntry
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+
+
+<div>
+    <h4>@Html.Raw(Model.Title)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @Html.Raw(Model.Content)
+
+    </dl>
+    
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Delete", "DeleteStatic", new { id = Model.StaticPageID }, new { @class = "btn btn-danger" })
+}
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Edit", "EditStatic", new { id = Model.StaticPageID }, new { @class = "btn btn-default" })
+}

@@ -1,0 +1,5 @@
+﻿@model List<Blog.MODELS.StaticEntry>
+@foreach (var staticEntry in Model)
+{
+    <li>@Html.ActionLink(staticEntry.Title, "GetStaticPage", new { id = staticEntry.StaticPageID })</li>
+}

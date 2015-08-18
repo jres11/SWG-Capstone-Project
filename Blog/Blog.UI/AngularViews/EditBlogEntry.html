@@ -1,0 +1,24 @@
+﻿<
+<div class="row" ng-controller="EditBlogController">
+    <form name="form" novalidate>
+        <textarea input data-ui-tinymce="" id="tinymce1" data-ng-model="blogEntry.PostContents"></textarea>
+    </form>
+    <div>
+        <p> {{blogEntry}} - {{blogEntry.PostContents}}</p>
+    </div>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="blogEntry.Title"/>
+        </div>
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="text" class="form-control" ng-model="blogEntry.StartDate"/>
+        </div>
+        <div class="form-group">
+            <label>End Date</label>
+            <input type="text" class="form-control" ng-model="blogEntry.EndDate"/>
+        </div>
+    </div>
+    <a href="#/blogs" class="btn btn-success" ng-click="editBlogEntry()">Submit</a>
+</div>

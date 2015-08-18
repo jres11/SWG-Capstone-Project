@@ -1,0 +1,22 @@
+USE [SarahsBlog]
+GO
+
+/****** Object:  Table [dbo].[StaticPages]    Script Date: 8/3/2015 12:57:03 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[StaticPages](
+	[StaticPageID] [int] IDENTITY(1,1) NOT NULL,
+	[Content] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_StaticPages] PRIMARY KEY CLUSTERED 
+(
+	[StaticPageID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
